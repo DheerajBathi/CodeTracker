@@ -11,6 +11,38 @@ import './LandingPage.css';
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const formData = new FormData(e.target);
+
+    try {
+      const response = await fetch('https://formspree.io/f/xgorgowk', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        e.target.reset();
+        setTimeout(() => setSubmitStatus(null), 5000);
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -60,14 +92,10 @@ export default function LandingPage() {
             </h1>
 
             <p className="hero-subtitle">
-              CodeTracker aggregates coding activity from different platforms and converts raw data into
-              structured analytics, rankings, and actionable insights for your institution.
-            </p>
-
-            <p className="hero-value">
               One platform to replace spreadsheets, manual tracking, and fragmented reports.
               Built for students, faculty, HODs, and administrators.
             </p>
+
 
             <div className="hero-actions">
               <a href="#contact" className="btn-primary">
@@ -716,7 +744,7 @@ export default function LandingPage() {
                   <div className="contact-icon-wrapper"><Mail size={20} /></div>
                   <div>
                     <h4>Email Us</h4>
-                    <span>codetracker.ofzen@gmail.com</span>
+                    <span>codetracker@ofzen.in</span>
                   </div>
                 </div>
                 <div className="contact-detail">
@@ -730,19 +758,44 @@ export default function LandingPage() {
             </div>
 
             <div className="contact-form-card">
-              <form className="contact-form" onSubmit={(e) => {
-                e.preventDefault();
-                const name = e.target.name.value;
-                const email = e.target.email.value;
-                const institution = e.target.institution.value;
-                const message = e.target.message.value;
-
-                const subject = encodeURIComponent(`CodeTracker Demo Request from ${name}`);
-                const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nInstitution: ${institution}\n\nMessage:\n${message}`);
-
-                window.location.href = `mailto:codetracker.ofzen@gmail.com?subject=${subject}&body=${body}`;
-              }}>
+              <form className="contact-form" onSubmit={handleSubmit}>
                 <h3>Request a Demo</h3>
+
+                {submitStatus === 'success' && (
+                  <div className="alert-success" style={{
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    color: '#10B981',
+                    border: '1px solid #10B981',
+                    padding: '12px 16px',
+                    borderRadius: '8px',
+                    marginBottom: '20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    animation: 'fadeIn 0.5s ease-out, slideUp 0.3s ease-out'
+                  }}>
+                    <CheckCircle2 size={20} />
+                    <span style={{ fontWeight: 500 }}>Message sent successfully!</span>
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="alert-error" style={{
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                    color: '#EF4444',
+                    border: '1px solid #EF4444',
+                    padding: '12px 16px',
+                    borderRadius: '8px',
+                    marginBottom: '20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    animation: 'fadeIn 0.5s ease-out, slideUp 0.3s ease-out'
+                  }}>
+                    <span style={{ fontWeight: 500 }}>Oops! Something went wrong. Please try again.</span>
+                  </div>
+                )}
+
                 <div className="form-group">
                   <label htmlFor="name">Full Name</label>
                   <input type="text" id="name" name="name" placeholder="Enter your name" required />
@@ -757,10 +810,12 @@ export default function LandingPage() {
                 </div>
                 <div className="form-group">
                   <label htmlFor="message">How can we help?</label>
-                  <textarea id="message" name="message" rows="4" placeholder="Tell us about your requirements..."></textarea>
+                  <textarea id="message" name="message" rows="4" placeholder="Tell us about your requirements..." required></textarea>
                 </div>
-                <button type="submit" className="btn-submit">
-                  Send Request <ArrowRight size={18} />
+                <button type="submit" className="btn-submit" disabled={isSubmitting} style={{ opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? 'not-allowed' : 'pointer' }}>
+                  {isSubmitting ? 'Sending...' : (
+                    <>Send Request <ArrowRight size={18} /></>
+                  )}
                 </button>
               </form>
             </div>
