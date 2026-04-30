@@ -7,6 +7,7 @@ import {
   ChevronRight, Monitor, Server, CircuitBoard
 } from 'lucide-react';
 import './LandingPage.css';
+import adityaUniversity from './assets/aditya university.jpg';
 
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
@@ -350,7 +351,7 @@ export default function LandingPage() {
               <div className="feature-icon"><Database size={24} /></div>
               <h3>Automated Data Aggregation</h3>
               <p>
-                Connects to LeetCode, CodeChef, GeeksforGeeks, HackerRank, and GitHub.
+                Connects to various coding platforms like LeetCode, CodeChef, GeeksforGeeks, HackerRank, and GitHub.
                 Automatically scrapes and syncs coding activity — problems solved,
                 contests, contributions, and streaks.
               </p>
@@ -727,7 +728,24 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ═══════════ OUR CLIENTS ═══════════ */}
+      <section className="section" id="clients">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-label">Our Clients</span>
+            <h2 className="section-title">Trusted by Top Institutions</h2>
+            <p className="section-subtitle">
+              Leading universities and colleges are using CodeTracker to revolutionize how they monitor and improve student coding performance.
+            </p>
+          </div>
 
+          <div className="clients-container">
+            <div className="client-logo-wrapper">
+              <img src={adityaUniversity} alt="Aditya University" className="client-logo-img" />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ═══════════ CONTACT ═══════════ */}
       <section className="contact-section" id="contact">
@@ -751,7 +769,7 @@ export default function LandingPage() {
                   <div className="contact-icon-wrapper"><Building2 size={20} /></div>
                   <div>
                     <h4>Office</h4>
-                    <span>Innovation Park, Tech City</span>
+                    <span>Bengaluru, Karnataka</span>
                   </div>
                 </div>
               </div>
