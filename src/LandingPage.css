@@ -1,8 +1,8 @@
 /* =============================================
-   CoderTracker – Landing Page Styles
+   CoderTracker â Landing Page Styles
    ============================================= */
 
-/* ── Navbar ── */
+/* ââ Navbar ââ */
 .navbar {
   position: fixed;
   top: 0;
@@ -105,7 +105,7 @@
   color: var(--gray-700);
 }
 
-/* ── Hero Section ── */
+/* ââ Hero Section ââ */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -659,7 +659,7 @@
   margin-top: 2px;
 }
 
-/* ── Section Base ── */
+/* ââ Section Base ââ */
 .section {
   padding: var(--section-padding);
 }
@@ -704,7 +704,7 @@
   line-height: 1.7;
 }
 
-/* ── Problem Section ── */
+/* ââ Problem Section ââ */
 .problem-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -767,7 +767,7 @@
   line-height: 1.65;
 }
 
-/* ── Solution Section ── */
+/* ââ Solution Section ââ */
 .solution-content {
   display: flex;
   align-items: center;
@@ -928,7 +928,7 @@
   border: 1px solid var(--blue-200);
 }
 
-/* ── Features Section ── */
+/* ââ Features Section ââ */
 .features-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -992,7 +992,7 @@
   line-height: 1.6;
 }
 
-/* ── How It Works ── */
+/* ââ How It Works ââ */
 .steps-container {
   display: flex;
   flex-direction: column;
@@ -1062,7 +1062,7 @@
   line-height: 1.65;
 }
 
-/* ── User Roles Section ── */
+/* ââ User Roles Section ââ */
 .roles-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1129,7 +1129,7 @@
   min-width: 16px;
 }
 
-/* ── Benefits Section ── */
+/* ââ Benefits Section ââ */
 .benefits-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -1176,7 +1176,7 @@
   line-height: 1.55;
 }
 
-/* ── Use Cases ── */
+/* ââ Use Cases ââ */
 .usecases-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1226,7 +1226,7 @@
   line-height: 1.6;
 }
 
-/* ── Tech Stack ── */
+/* ââ Tech Stack ââ */
 .tech-content {
   display: flex;
   align-items: center;
@@ -1363,7 +1363,7 @@
   color: #ffd700;
 }
 
-/* ── Contact Section ── */
+/* ââ Contact Section ââ */
 .contact-section {
   padding: 100px 0;
   background: var(--white);
@@ -1504,7 +1504,7 @@
   box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
 }
 
-/* ── Clients Section ── */
+/* ââ Clients Section ââ */
 .clients-container {
   display: flex;
   justify-content: center;
@@ -1539,7 +1539,7 @@
 
 
 
-/* ── Footer ── */
+/* ââ Footer ââ */
 .footer {
   padding: 64px 0 32px;
   background: var(--gray-900);
@@ -1639,7 +1639,7 @@
   color: var(--white);
 }
 
-/* ── Responsive ── */
+/* ââ Responsive ââ */
 @media (max-width: 1024px) {
   .hero h1 {
     font-size: 2.8rem;
@@ -1843,5 +1843,201 @@
 
   .benefits-grid {
     grid-template-columns: 1fr;
+  }
+}/* %% Legal Pages %% */
+.legal-main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 120px 40px 80px;
+}
+
+.legal-header {
+  margin-bottom: 64px;
+}
+
+.legal-document-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--gray-800);
+  padding: 6px 12px;
+  margin-bottom: 24px;
+  background: var(--white);
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--blue-700);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.legal-document-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--blue-600);
+  border-radius: 50%;
+}
+
+.legal-title {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--gray-900);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.legal-subtitle {
+  font-size: 1.15rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  max-width: 700px;
+}
+
+.legal-meta-cards {
+  display: flex;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.legal-meta-card {
+  border: 1px solid var(--gray-200);
+  padding: 12px 16px;
+  background: var(--white);
+  border-radius: var(--radius-md);
+}
+
+.legal-meta-label {
+  font-family: monospace;
+  font-size: 0.65rem;
+  color: var(--gray-400);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.legal-meta-value {
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+.legal-notice {
+  background: var(--blue-50);
+  border-left: 4px solid var(--blue-500);
+  padding: 24px;
+  margin-bottom: 48px;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.legal-notice.dark {
+  background: var(--gray-900);
+  border-left: 4px solid var(--blue-400);
+  color: var(--gray-300);
+}
+
+.legal-notice-title {
+  font-family: monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--blue-700);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.legal-notice.dark .legal-notice-title {
+  color: var(--blue-300);
+}
+
+.legal-notice-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.legal-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.legal-section-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+}
+
+.legal-section-card:hover {
+  border-color: var(--blue-300);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.legal-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.legal-section-icon {
+  color: var(--blue-600);
+}
+
+.legal-section-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--gray-900);
+}
+
+.legal-section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.legal-block-subtitle {
+  font-family: monospace;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+
+.legal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.legal-list-item {
+  display: flex;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+
+.legal-list-bullet {
+  width: 6px;
+  height: 6px;
+  background: var(--blue-500);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 8px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .legal-meta-cards {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .legal-title {
+    font-size: 2.2rem;
   }
 }

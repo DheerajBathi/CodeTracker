@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Activity, BarChart3, ShieldCheck, Users, FileText, ArrowRight,
   CheckCircle2, Globe, RefreshCw, Trophy, Eye, Lock, Download,
@@ -863,23 +864,23 @@ export default function LandingPage() {
               <a href="#how-it-works">How It Works</a>
               <a href="#roles">User Roles</a>
               <a href="#use-cases">Use Cases</a>
-              <a href="#technology">Technology</a>
+
             </div>
 
-            <div className="footer-column">
+            {/* <div className="footer-column">
               <h4>Resources</h4>
               <a href="#">Documentation</a>
               <a href="#">API Reference</a>
               <a href="#">Changelog</a>
               <a href="#">Support</a>
-            </div>
+            </div> */}
 
             <div className="footer-column">
               <h4>Company</h4>
-              <a href="#">About</a>
-              <a href="#">Contact</a>
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
+              {/* <a href="#">About</a> */}
+              <a href="#contact">Contact</a>
+              <Link to="/privacy">Privacy Policy</Link>
+              <Link to="/terms">Terms of Service</Link>
             </div>
           </div>
 
