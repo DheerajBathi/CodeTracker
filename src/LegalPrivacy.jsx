@@ -1,7 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Shield, Eye, Database, Server, Lock, Mail, Code2, GitFork, Globe } from "lucide-react";
+import {
+  ArrowLeft,
+  Shield,
+  Eye,
+  Database,
+  Server,
+  Lock,
+  Mail,
+  Code2,
+  GitFork,
+  Globe,
+} from "lucide-react";
 import "./LandingPage.css";
+import logo from "./assets/logo_light.png";
 
 const EFFECTIVE_DATE = "1 May 2026";
 
@@ -132,22 +144,27 @@ export default function PrivacyPolicy() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <div>
       {/* Top Nav Bar */}
-      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
         <div className="container navbar-inner">
           <Link to="/" className="navbar-logo">
-            <span className="logo-icon"><Code2 size={20} /></span>
-            CodeTracker
+            <img src={logo} className="logo-icon" alt="Logo" />
+            <p className="nav-logo-text">
+              Code<span className="nav-logo-black">Tracker</span>
+            </p>
           </Link>
 
           <div className="navbar-links">
-            <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Link
+              to="/"
+              style={{ display: "flex", alignItems: "center", gap: "8px" }}
+            >
               <ArrowLeft size={16} /> Back to Home
             </Link>
           </div>
@@ -163,8 +180,9 @@ export default function PrivacyPolicy() {
           </div>
           <h1 className="legal-title">Privacy Policy</h1>
           <p className="legal-subtitle">
-            This Privacy Policy describes how <strong>Ofzen Technologies</strong> ("we", "us", "our")
-            collects, uses, stores, and protects information in connection with the{" "}
+            This Privacy Policy describes how{" "}
+            <strong>Ofzen Technologies</strong> ("we", "us", "our") collects,
+            uses, stores, and protects information in connection with the{" "}
             <strong>CodeTracker</strong> platform.
           </p>
           <div className="legal-meta-cards">
@@ -187,10 +205,11 @@ export default function PrivacyPolicy() {
         <div className="legal-notice">
           <p className="legal-notice-title">Scope</p>
           <p className="legal-notice-text">
-            This policy applies to students and institutions using CodeTracker within India.
-            CodeTracker is a B2B SaaS product — institutions purchase licenses, and students
-            access the platform through their institution's subscription. This policy governs
-            the data of all parties involved.
+            This policy applies to students and institutions using CodeTracker
+            within India. CodeTracker is a B2B SaaS product — institutions
+            purchase licenses, and students access the platform through their
+            institution's subscription. This policy governs the data of all
+            parties involved.
           </p>
         </div>
 
@@ -208,9 +227,7 @@ export default function PrivacyPolicy() {
                   {section.content.map((block, i) => (
                     <div key={i}>
                       {block.subtitle && (
-                        <p className="legal-block-subtitle">
-                          {block.subtitle}
-                        </p>
+                        <p className="legal-block-subtitle">{block.subtitle}</p>
                       )}
                       <ul className="legal-list">
                         {block.items.map((item, j) => (
@@ -227,8 +244,7 @@ export default function PrivacyPolicy() {
             );
           })}
         </div>
-
-        </main>
+      </main>
 
       {/* ═══════════ FOOTER ═══════════ */}
       <footer className="footer">
@@ -236,13 +252,15 @@ export default function PrivacyPolicy() {
           <div className="footer-grid">
             <div className="footer-about">
               <h3 className="footer-brand">
-                <span className="footer-brand-icon"><Code2 size={18} /></span>
+                <span className="footer-brand-icon">
+                  <Code2 size={18} />
+                </span>
                 CodeTracker
               </h3>
               <p>
-                A Unified Coding Performance Intelligence Platform for educational
-                institutions. Aggregate, analyze, and act on coding data from every
-                major platform — automatically.
+                A Unified Coding Performance Intelligence Platform for
+                educational institutions. Aggregate, analyze, and act on coding
+                data from every major platform — automatically.
               </p>
             </div>
 
@@ -263,7 +281,10 @@ export default function PrivacyPolicy() {
           </div>
 
           <div className="footer-bottom">
-            <p>&copy; {new Date().getFullYear()} CodeTracker. All rights reserved.</p>
+            <p>
+              &copy; {new Date().getFullYear()} CodeTracker. All rights
+              reserved.
+            </p>
             <div className="footer-socials">
               <a href="#" className="footer-social-link" aria-label="GitHub">
                 <GitFork size={16} />

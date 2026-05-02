@@ -1,14 +1,39 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
-  Activity, BarChart3, ShieldCheck, Users, FileText, ArrowRight,
-  CheckCircle2, Globe, RefreshCw, Trophy, Eye, Lock, Download,
-  Database, TrendingUp, Layers, Zap, BookOpen, GraduationCap,
-  Building2, Settings, GitFork, Mail, ExternalLink, Code2, Menu, X,
-  ChevronRight, Monitor, Server, CircuitBoard
-} from 'lucide-react';
-import './LandingPage.css';
-import adityaUniversity from './assets/aditya university.jpg';
+  Activity,
+  BarChart3,
+  ShieldCheck,
+  Users,
+  FileText,
+  ArrowRight,
+  CheckCircle2,
+  Globe,
+  RefreshCw,
+  Trophy,
+  Eye,
+  Lock,
+  Download,
+  Database,
+  TrendingUp,
+  Layers,
+  Zap,
+  BookOpen,
+  GraduationCap,
+  Building2,
+  Settings,
+  GitFork,
+  Mail,
+  ExternalLink,
+  Code2,
+  Menu,
+  X,
+  ChevronRight,
+} from "lucide-react";
+import "./LandingPage.css";
+import logo from "./assets/logo_light.png";
+import logodark from "./assets/logo_dark.png";
+import adityaUniversity from "./assets/aditya university.jpg";
 
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,23 +49,24 @@ export default function LandingPage() {
     const formData = new FormData(e.target);
 
     try {
-      const response = await fetch('https://formspree.io/f/xgorgowk', {
-        method: 'POST',
+      const formspreeId = import.meta.env.VITE_FORMSPREE_ID;
+      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+        method: "POST",
         body: formData,
         headers: {
-          'Accept': 'application/json'
-        }
+          Accept: "application/json",
+        },
       });
 
       if (response.ok) {
-        setSubmitStatus('success');
+        setSubmitStatus("success");
         e.target.reset();
         setTimeout(() => setSubmitStatus(null), 5000);
       } else {
-        setSubmitStatus('error');
+        setSubmitStatus("error");
       }
     } catch (error) {
-      setSubmitStatus('error');
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
@@ -48,18 +74,20 @@ export default function LandingPage() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
       {/* ═══════════ NAVBAR ═══════════ */}
-      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
         <div className="container navbar-inner">
           <a href="#" className="navbar-logo">
-            <span className="logo-icon"><Code2 size={20} /></span>
-            CodeTracker
+            <img src={logo} className="logo-icon" alt="Logo" />
+            <p className="nav-logo-text">
+              Code<span className="nav-logo-black">Tracker</span>
+            </p>
           </a>
 
           <div className="navbar-links">
@@ -67,7 +95,9 @@ export default function LandingPage() {
             <a href="#how-it-works">How It Works</a>
             <a href="#roles">Roles</a>
             <a href="#use-cases">Use Cases</a>
-            <a href="#contact" className="navbar-cta">Get Started</a>
+            <a href="#contact" className="navbar-cta">
+              Get Started
+            </a>
           </div>
 
           <button
@@ -90,14 +120,15 @@ export default function LandingPage() {
             </div>
 
             <h1>
-              Track, Analyze &amp; Rank <span>Coding Performance</span> Across Every Platform
+              Track, Analyze &amp; Rank <span>Coding Performance</span> Across
+              Every Platform
             </h1>
 
             <p className="hero-subtitle">
-              One platform to replace spreadsheets, manual tracking, and fragmented reports.
-              Built for students, faculty, HODs, and administrators.
+              One platform to replace spreadsheets, manual tracking, and
+              fragmented reports. Built for students, faculty, HODs, and
+              administrators.
             </p>
-
 
             <div className="hero-actions">
               <a href="#contact" className="btn-primary">
@@ -133,7 +164,9 @@ export default function LandingPage() {
               </div>
               <div className="preview-content">
                 <div className="preview-header-row">
-                  <span className="preview-title">Student Performance Dashboard</span>
+                  <span className="preview-title">
+                    Student Performance Dashboard
+                  </span>
                   <span className="preview-live-badge">
                     <span className="preview-live-dot"></span>
                     LIVE
@@ -159,9 +192,15 @@ export default function LandingPage() {
                 </div>
 
                 <div className="preview-chart">
-                  {[40, 65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 88].map((h, i) => (
-                    <div key={i} className="chart-bar" style={{ height: `${h}%` }} />
-                  ))}
+                  {[40, 65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 88].map(
+                    (h, i) => (
+                      <div
+                        key={i}
+                        className="chart-bar"
+                        style={{ height: `${h}%` }}
+                      />
+                    ),
+                  )}
                 </div>
 
                 <div className="preview-ranking-rows">
@@ -183,16 +222,6 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-
-            <div className="hero-floating-card card-1">
-              <div className="floating-card-label">Synced Platforms</div>
-              <div className="floating-card-value">5 Active</div>
-            </div>
-
-            <div className="hero-floating-card card-2">
-              <div className="floating-card-label">Verified Profiles</div>
-              <div className="floating-card-value">100%</div>
-            </div>
           </div>
         </div>
       </section>
@@ -202,51 +231,63 @@ export default function LandingPage() {
         <div className="container">
           <div className="section-header">
             <span className="section-label">The Problem</span>
-            <h2 className="section-title">Why Tracking Coding Performance Is Broken</h2>
+            <h2 className="section-title">
+              Why Tracking Coding Performance Is Broken
+            </h2>
             <p className="section-subtitle">
-              Educational institutions struggle with fragmented data, manual processes,
-              and zero visibility into actual student coding activity.
+              Educational institutions struggle with fragmented data, manual
+              processes, and zero visibility into actual student coding
+              activity.
             </p>
           </div>
 
           <div className="problem-grid">
             <div className="problem-card">
-              <div className="problem-icon"><Layers size={24} /></div>
+              <div className="problem-icon">
+                <Layers size={24} />
+              </div>
               <h3>Fragmented Coding Data</h3>
               <p>
-                Students practice on LeetCode, CodeChef, GFG, HackerRank, and GitHub.
-                Each platform stores data in isolation with no way to get a unified view
-                of a student&apos;s actual coding effort.
+                Students practice on LeetCode, CodeChef, GFG, HackerRank, and
+                GitHub. Each platform stores data in isolation with no way to
+                get a unified view of a student&apos;s actual coding effort.
               </p>
             </div>
 
             <div className="problem-card">
-              <div className="problem-icon"><Eye size={24} /></div>
+              <div className="problem-icon">
+                <Eye size={24} />
+              </div>
               <h3>No Institutional Visibility</h3>
               <p>
-                Faculty and HODs have no reliable mechanism to monitor student coding
-                activity. There&apos;s no single dashboard that shows who is practicing,
-                how much, and on which platform.
+                Faculty and HODs have no reliable mechanism to monitor student
+                coding activity. There&apos;s no single dashboard that shows who
+                is practicing, how much, and on which platform.
               </p>
             </div>
 
             <div className="problem-card">
-              <div className="problem-icon"><FileText size={24} /></div>
+              <div className="problem-icon">
+                <FileText size={24} />
+              </div>
               <h3>Manual Tracking Is Unsustainable</h3>
               <p>
-                Collecting screenshots, spreadsheets, and self-reported data wastes
-                faculty time, introduces errors, and doesn&apos;t scale beyond a handful
-                of students.
+                Collecting screenshots, spreadsheets, and self-reported data
+                wastes faculty time, introduces errors, and doesn&apos;t scale
+                beyond a handful of students.
               </p>
             </div>
 
             <div className="problem-card">
-              <div className="problem-icon"><BarChart3 size={24} /></div>
+              <div className="problem-icon">
+                <BarChart3 size={24} />
+              </div>
               <h3>No Standard Evaluation</h3>
               <p>
-                Without normalized metrics, institutions can&apos;t fairly compare
-                student performance across platforms. A student solving 100 problems
-                on LeetCode isn&apos;t directly comparable to 100 on CodeChef.
+                Without normalized metrics, institutions can&apos;t fairly
+                compare student performance across platforms. A student solving
+                100 problems on LeetCode isn&apos;t directly comparable to 100
+                on CodeChef.
               </p>
             </div>
           </div>
@@ -260,8 +301,8 @@ export default function LandingPage() {
             <span className="section-label">The Solution</span>
             <h2 className="section-title">One Platform. Complete Clarity.</h2>
             <p className="section-subtitle">
-              CodeTracker replaces disconnected tools with a centralized, automated,
-              and intelligent performance tracking system.
+              CodeTracker replaces disconnected tools with a centralized,
+              automated, and intelligent performance tracking system.
             </p>
           </div>
 
@@ -277,31 +318,51 @@ export default function LandingPage() {
 
               <div className="solution-points">
                 <div className="solution-point">
-                  <div className="solution-point-icon"><Globe size={18} /></div>
+                  <div className="solution-point-icon">
+                    <Globe size={18} />
+                  </div>
                   <div className="solution-point-content">
                     <h4>Centralized Aggregation</h4>
-                    <p>All platform data flows into a single source of truth, eliminating silos and manual collection.</p>
+                    <p>
+                      All platform data flows into a single source of truth,
+                      eliminating silos and manual collection.
+                    </p>
                   </div>
                 </div>
                 <div className="solution-point">
-                  <div className="solution-point-icon"><RefreshCw size={18} /></div>
+                  <div className="solution-point-icon">
+                    <RefreshCw size={18} />
+                  </div>
                   <div className="solution-point-content">
                     <h4>Automated Syncing</h4>
-                    <p>Scheduled and on-demand data collection ensures dashboards always reflect current student activity.</p>
+                    <p>
+                      Scheduled and on-demand data collection ensures dashboards
+                      always reflect current student activity.
+                    </p>
                   </div>
                 </div>
                 <div className="solution-point">
-                  <div className="solution-point-icon"><TrendingUp size={18} /></div>
+                  <div className="solution-point-icon">
+                    <TrendingUp size={18} />
+                  </div>
                   <div className="solution-point-content">
                     <h4>Normalized Analytics</h4>
-                    <p>Performance scores are standardized across platforms so comparisons are fair and meaningful.</p>
+                    <p>
+                      Performance scores are standardized across platforms so
+                      comparisons are fair and meaningful.
+                    </p>
                   </div>
                 </div>
                 <div className="solution-point">
-                  <div className="solution-point-icon"><ShieldCheck size={18} /></div>
+                  <div className="solution-point-icon">
+                    <ShieldCheck size={18} />
+                  </div>
                   <div className="solution-point-content">
                     <h4>Role-Based Governance</h4>
-                    <p>Students, faculty, HODs, and admins each see exactly what they need — nothing more, nothing less.</p>
+                    <p>
+                      Students, faculty, HODs, and admins each see exactly what
+                      they need — nothing more, nothing less.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -319,7 +380,9 @@ export default function LandingPage() {
                   </div>
                   <div className="diagram-arrow" />
                   <div className="diagram-hub">
-                    Code<br />Tracker
+                    Code
+                    <br />
+                    Tracker
                   </div>
                   <div className="diagram-arrow" />
                   <div className="diagram-output">
@@ -340,71 +403,86 @@ export default function LandingPage() {
         <div className="container">
           <div className="section-header">
             <span className="section-label">Features</span>
-            <h2 className="section-title">Everything You Need to Track Coding Performance</h2>
+            <h2 className="section-title">
+              Everything You Need to Track Coding Performance
+            </h2>
             <p className="section-subtitle">
-              A complete toolkit for collecting, analyzing, and acting on student
-              coding data — without manual work.
+              A complete toolkit for collecting, analyzing, and acting on
+              student coding data — without manual work.
             </p>
           </div>
 
           <div className="features-grid">
             <div className="feature-card">
-              <div className="feature-icon"><Database size={24} /></div>
+              <div className="feature-icon">
+                <Database size={24} />
+              </div>
               <h3>Automated Data Aggregation</h3>
               <p>
-                Connects to various coding platforms like LeetCode, CodeChef, GeeksforGeeks, HackerRank, and GitHub.
-                Automatically scrapes and syncs coding activity — problems solved,
-                contests, contributions, and streaks.
+                Connects to various coding platforms like LeetCode, CodeChef,
+                GeeksforGeeks, HackerRank, and GitHub. Automatically scrapes and
+                syncs coding activity — problems solved, contests,
+                contributions, and streaks.
               </p>
             </div>
 
             <div className="feature-card">
-              <div className="feature-icon"><Activity size={24} /></div>
+              <div className="feature-icon">
+                <Activity size={24} />
+              </div>
               <h3>Real-Time Analytics</h3>
               <p>
-                Live dashboards display individual and aggregate performance metrics.
-                Track progress over time, identify trends, and spot students who
-                need attention.
+                Live dashboards display individual and aggregate performance
+                metrics. Track progress over time, identify trends, and spot
+                students who need attention.
               </p>
             </div>
 
             <div className="feature-card">
-              <div className="feature-icon"><Trophy size={24} /></div>
+              <div className="feature-icon">
+                <Trophy size={24} />
+              </div>
               <h3>Ranking System</h3>
               <p>
-                Normalized scoring engine ranks students fairly across platforms.
-                Department-level and institution-level leaderboards encourage healthy
-                competition and highlight top performers.
+                Normalized scoring engine ranks students fairly across
+                platforms. Department-level and institution-level leaderboards
+                encourage healthy competition and highlight top performers.
               </p>
             </div>
 
             <div className="feature-card">
-              <div className="feature-icon"><Lock size={24} /></div>
+              <div className="feature-icon">
+                <Lock size={24} />
+              </div>
               <h3>Role-Based Access Control</h3>
               <p>
-                Four distinct roles — Student, Faculty, HOD, and Admin — each with
-                purpose-built dashboards and permissions. Every user sees exactly
-                what they need.
+                Four distinct roles — Student, Faculty, HOD, and Admin — each
+                with purpose-built dashboards and permissions. Every user sees
+                exactly what they need.
               </p>
             </div>
 
             <div className="feature-card">
-              <div className="feature-icon"><ShieldCheck size={24} /></div>
+              <div className="feature-icon">
+                <ShieldCheck size={24} />
+              </div>
               <h3>Profile Verification</h3>
               <p>
                 Built-in verification workflows ensure that platform usernames
-                submitted by students are authentic. Faculty can approve, reject,
-                or flag profiles for review.
+                submitted by students are authentic. Faculty can approve,
+                reject, or flag profiles for review.
               </p>
             </div>
 
             <div className="feature-card">
-              <div className="feature-icon"><Download size={24} /></div>
+              <div className="feature-icon">
+                <Download size={24} />
+              </div>
               <h3>Reports &amp; Exports</h3>
               <p>
-                Generate downloadable reports for placement cells, department reviews,
-                and institutional reporting. Export data in structured formats for
-                further analysis.
+                Generate downloadable reports for placement cells, department
+                reviews, and institutional reporting. Export data in structured
+                formats for further analysis.
               </p>
             </div>
           </div>
@@ -416,10 +494,12 @@ export default function LandingPage() {
         <div className="container">
           <div className="section-header">
             <span className="section-label">How It Works</span>
-            <h2 className="section-title">From Raw Data to Actionable Insights</h2>
+            <h2 className="section-title">
+              From Raw Data to Actionable Insights
+            </h2>
             <p className="section-subtitle">
-              Five straightforward steps to transform fragmented coding activity into
-              structured, institution-ready intelligence.
+              Five straightforward steps to transform fragmented coding activity
+              into structured, institution-ready intelligence.
             </p>
           </div>
 
@@ -432,9 +512,9 @@ export default function LandingPage() {
               <div className="step-content">
                 <h3>Connect Profiles</h3>
                 <p>
-                  Students link their coding platform usernames — LeetCode, CodeChef,
-                  GeeksforGeeks, HackerRank, and GitHub. The system validates each link
-                  and stores it securely.
+                  Students link their coding platform usernames — LeetCode,
+                  CodeChef, GeeksforGeeks, HackerRank, and GitHub. The system
+                  validates each link and stores it securely.
                 </p>
               </div>
             </div>
@@ -447,9 +527,9 @@ export default function LandingPage() {
               <div className="step-content">
                 <h3>Collect Data Automatically</h3>
                 <p>
-                  CodeTracker&apos;s automated scrapers run on a schedule, pulling
-                  the latest stats from each platform — problems solved, ratings,
-                  contest history, GitHub contributions, and more.
+                  CodeTracker&apos;s automated scrapers run on a schedule,
+                  pulling the latest stats from each platform — problems solved,
+                  ratings, contest history, GitHub contributions, and more.
                 </p>
               </div>
             </div>
@@ -462,9 +542,9 @@ export default function LandingPage() {
               <div className="step-content">
                 <h3>Normalize &amp; Standardize</h3>
                 <p>
-                  Raw data is normalized across platforms using a weighted scoring
-                  algorithm. This ensures fair, apples-to-apples comparison regardless
-                  of which platform a student uses most.
+                  Raw data is normalized across platforms using a weighted
+                  scoring algorithm. This ensures fair, apples-to-apples
+                  comparison regardless of which platform a student uses most.
                 </p>
               </div>
             </div>
@@ -477,9 +557,9 @@ export default function LandingPage() {
               <div className="step-content">
                 <h3>Generate Rankings</h3>
                 <p>
-                  The ranking engine computes individual scores, produces leaderboards
-                  at the section, department, and institution level, and updates them
-                  in real time as new data arrives.
+                  The ranking engine computes individual scores, produces
+                  leaderboards at the section, department, and institution
+                  level, and updates them in real time as new data arrives.
                 </p>
               </div>
             </div>
@@ -491,9 +571,10 @@ export default function LandingPage() {
               <div className="step-content">
                 <h3>View Insights &amp; Take Action</h3>
                 <p>
-                  Stakeholders access role-specific dashboards to monitor performance,
-                  identify trends, generate reports, and make data-driven decisions
-                  about curriculum, placement prep, and student support.
+                  Stakeholders access role-specific dashboards to monitor
+                  performance, identify trends, generate reports, and make
+                  data-driven decisions about curriculum, placement prep, and
+                  student support.
                 </p>
               </div>
             </div>
@@ -506,7 +587,9 @@ export default function LandingPage() {
         <div className="container">
           <div className="section-header">
             <span className="section-label">User Roles</span>
-            <h2 className="section-title">Purpose-Built for Every Stakeholder</h2>
+            <h2 className="section-title">
+              Purpose-Built for Every Stakeholder
+            </h2>
             <p className="section-subtitle">
               CodeTracker serves four distinct user roles, each with tailored
               dashboards, permissions, and workflows.
@@ -515,11 +598,13 @@ export default function LandingPage() {
 
           <div className="roles-grid">
             <div className="role-card">
-              <div className="role-icon"><GraduationCap size={28} /></div>
+              <div className="role-icon">
+                <GraduationCap size={28} />
+              </div>
               <h3>Students</h3>
               <p>
-                Track your coding progress across all platforms in one place. See
-                your ranking, identify weak areas, and stay motivated.
+                Track your coding progress across all platforms in one place.
+                See your ranking, identify weak areas, and stay motivated.
               </p>
               <div className="role-benefits">
                 <div className="role-benefit">
@@ -542,7 +627,9 @@ export default function LandingPage() {
             </div>
 
             <div className="role-card">
-              <div className="role-icon"><BookOpen size={28} /></div>
+              <div className="role-icon">
+                <BookOpen size={28} />
+              </div>
               <h3>Faculty</h3>
               <p>
                 Monitor student coding activity, verify platform profiles, and
@@ -569,7 +656,9 @@ export default function LandingPage() {
             </div>
 
             <div className="role-card">
-              <div className="role-icon"><Building2 size={28} /></div>
+              <div className="role-icon">
+                <Building2 size={28} />
+              </div>
               <h3>HOD</h3>
               <p>
                 Get department-level analytics, compare section performance, and
@@ -596,7 +685,9 @@ export default function LandingPage() {
             </div>
 
             <div className="role-card">
-              <div className="role-icon"><Settings size={28} /></div>
+              <div className="role-icon">
+                <Settings size={28} />
+              </div>
               <h3>Admin</h3>
               <p>
                 Manage all users, configure system settings, oversee analytics,
@@ -630,37 +721,65 @@ export default function LandingPage() {
         <div className="container">
           <div className="section-header">
             <span className="section-label">Benefits</span>
-            <h2 className="section-title">Why Institutions Choose CodeTracker</h2>
+            <h2 className="section-title">
+              Why Institutions Choose CodeTracker
+            </h2>
             <p className="section-subtitle">
-              Measurable improvements in visibility, efficiency, and decision-making.
+              Measurable improvements in visibility, efficiency, and
+              decision-making.
             </p>
           </div>
 
           <div className="benefits-grid">
             <div className="benefit-card">
-              <div className="benefit-icon"><Eye size={22} /></div>
+              <div className="benefit-icon">
+                <Eye size={22} />
+              </div>
               <h4>Centralized Visibility</h4>
-              <p>All coding data in one place — across students, sections, and departments.</p>
+              <p>
+                All coding data in one place — across students, sections, and
+                departments.
+              </p>
             </div>
             <div className="benefit-card">
-              <div className="benefit-icon"><BarChart3 size={22} /></div>
+              <div className="benefit-icon">
+                <BarChart3 size={22} />
+              </div>
               <h4>Data-Driven Decisions</h4>
-              <p>Move beyond guesswork. Use real performance data to guide curriculum and placement prep.</p>
+              <p>
+                Move beyond guesswork. Use real performance data to guide
+                curriculum and placement prep.
+              </p>
             </div>
             <div className="benefit-card">
-              <div className="benefit-icon"><ShieldCheck size={22} /></div>
+              <div className="benefit-icon">
+                <ShieldCheck size={22} />
+              </div>
               <h4>Transparency</h4>
-              <p>Verified profiles and normalized scoring eliminate self-reported bias and data manipulation.</p>
+              <p>
+                Verified profiles and normalized scoring eliminate self-reported
+                bias and data manipulation.
+              </p>
             </div>
             <div className="benefit-card">
-              <div className="benefit-icon"><Zap size={22} /></div>
+              <div className="benefit-icon">
+                <Zap size={22} />
+              </div>
               <h4>Efficiency</h4>
-              <p>Automated collection and reporting save hours of manual work for faculty every week.</p>
+              <p>
+                Automated collection and reporting save hours of manual work for
+                faculty every week.
+              </p>
             </div>
             <div className="benefit-card">
-              <div className="benefit-icon"><Users size={22} /></div>
+              <div className="benefit-icon">
+                <Users size={22} />
+              </div>
               <h4>Scalability</h4>
-              <p>Works for 50 students or 5,000. Role-based access scales with your institution&apos;s size.</p>
+              <p>
+                Works for 50 students or 5,000. Role-based access scales with
+                your institution&apos;s size.
+              </p>
             </div>
           </div>
         </div>
@@ -673,7 +792,8 @@ export default function LandingPage() {
             <span className="section-label">Use Cases</span>
             <h2 className="section-title">Real-World Applications</h2>
             <p className="section-subtitle">
-              CodeTracker serves practical needs that institutions deal with every semester.
+              CodeTracker serves practical needs that institutions deal with
+              every semester.
             </p>
           </div>
 
@@ -683,9 +803,10 @@ export default function LandingPage() {
               <div>
                 <h3>Student Evaluation</h3>
                 <p>
-                  Use normalized coding scores as a supplementary evaluation metric
-                  alongside academic grades. Identify students who are strong coders
-                  but may not reflect it in traditional assessments.
+                  Use normalized coding scores as a supplementary evaluation
+                  metric alongside academic grades. Identify students who are
+                  strong coders but may not reflect it in traditional
+                  assessments.
                 </p>
               </div>
             </div>
@@ -696,8 +817,8 @@ export default function LandingPage() {
                 <h3>Placement Preparation</h3>
                 <p>
                   Placement cells can identify coding-ready students, generate
-                  preparation reports, and track improvement trends in the months
-                  leading up to placement season.
+                  preparation reports, and track improvement trends in the
+                  months leading up to placement season.
                 </p>
               </div>
             </div>
@@ -707,9 +828,9 @@ export default function LandingPage() {
               <div>
                 <h3>Department Analytics</h3>
                 <p>
-                  HODs can compare coding activity across sections, identify patterns,
-                  and use insights to justify curriculum changes, lab hour allocations,
-                  or coding club initiatives.
+                  HODs can compare coding activity across sections, identify
+                  patterns, and use insights to justify curriculum changes, lab
+                  hour allocations, or coding club initiatives.
                 </p>
               </div>
             </div>
@@ -719,9 +840,9 @@ export default function LandingPage() {
               <div>
                 <h3>Institutional Reporting</h3>
                 <p>
-                  Generate institution-wide reports for accreditation bodies, governing
-                  boards, or internal reviews that demonstrate measurable student
-                  coding skill development.
+                  Generate institution-wide reports for accreditation bodies,
+                  governing boards, or internal reviews that demonstrate
+                  measurable student coding skill development.
                 </p>
               </div>
             </div>
@@ -736,13 +857,19 @@ export default function LandingPage() {
             <span className="section-label">Our Clients</span>
             <h2 className="section-title">Trusted by Top Institutions</h2>
             <p className="section-subtitle">
-              Leading universities and colleges are using CodeTracker to revolutionize how they monitor and improve student coding performance.
+              Leading universities and colleges are using CodeTracker to
+              revolutionize how they monitor and improve student coding
+              performance.
             </p>
           </div>
 
           <div className="clients-container">
             <div className="client-logo-wrapper">
-              <img src={adityaUniversity} alt="Aditya University" className="client-logo-img" />
+              <img
+                src={adityaUniversity}
+                alt="Aditya University"
+                className="client-logo-img"
+              />
             </div>
           </div>
         </div>
@@ -760,14 +887,18 @@ export default function LandingPage() {
               </p>
               <div className="contact-details">
                 <div className="contact-detail">
-                  <div className="contact-icon-wrapper"><Mail size={20} /></div>
+                  <div className="contact-icon-wrapper">
+                    <Mail size={20} />
+                  </div>
                   <div>
                     <h4>Email Us</h4>
                     <span>codetracker@ofzen.in</span>
                   </div>
                 </div>
                 <div className="contact-detail">
-                  <div className="contact-icon-wrapper"><Building2 size={20} /></div>
+                  <div className="contact-icon-wrapper">
+                    <Building2 size={20} />
+                  </div>
                   <div>
                     <h4>Office</h4>
                     <span>Bengaluru, Karnataka</span>
@@ -780,60 +911,106 @@ export default function LandingPage() {
               <form className="contact-form" onSubmit={handleSubmit}>
                 <h3>Request a Demo</h3>
 
-                {submitStatus === 'success' && (
-                  <div className="alert-success" style={{
-                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                    color: '#10B981',
-                    border: '1px solid #10B981',
-                    padding: '12px 16px',
-                    borderRadius: '8px',
-                    marginBottom: '20px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    animation: 'fadeIn 0.5s ease-out, slideUp 0.3s ease-out'
-                  }}>
+                {submitStatus === "success" && (
+                  <div
+                    className="alert-success"
+                    style={{
+                      backgroundColor: "rgba(16, 185, 129, 0.1)",
+                      color: "#10B981",
+                      border: "1px solid #10B981",
+                      padding: "12px 16px",
+                      borderRadius: "8px",
+                      marginBottom: "20px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      animation: "fadeIn 0.5s ease-out, slideUp 0.3s ease-out",
+                    }}
+                  >
                     <CheckCircle2 size={20} />
-                    <span style={{ fontWeight: 500 }}>Message sent successfully!</span>
+                    <span style={{ fontWeight: 500 }}>
+                      Message sent successfully!
+                    </span>
                   </div>
                 )}
 
-                {submitStatus === 'error' && (
-                  <div className="alert-error" style={{
-                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                    color: '#EF4444',
-                    border: '1px solid #EF4444',
-                    padding: '12px 16px',
-                    borderRadius: '8px',
-                    marginBottom: '20px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    animation: 'fadeIn 0.5s ease-out, slideUp 0.3s ease-out'
-                  }}>
-                    <span style={{ fontWeight: 500 }}>Oops! Something went wrong. Please try again.</span>
+                {submitStatus === "error" && (
+                  <div
+                    className="alert-error"
+                    style={{
+                      backgroundColor: "rgba(239, 68, 68, 0.1)",
+                      color: "#EF4444",
+                      border: "1px solid #EF4444",
+                      padding: "12px 16px",
+                      borderRadius: "8px",
+                      marginBottom: "20px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      animation: "fadeIn 0.5s ease-out, slideUp 0.3s ease-out",
+                    }}
+                  >
+                    <span style={{ fontWeight: 500 }}>
+                      Oops! Something went wrong. Please try again.
+                    </span>
                   </div>
                 )}
 
                 <div className="form-group">
                   <label htmlFor="name">Full Name</label>
-                  <input type="text" id="name" name="name" placeholder="Enter your name" required />
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="email">Work Email</label>
-                  <input type="email" id="email" name="email" placeholder="email@example.com" required />
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="email@example.com"
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="institution">Institution Name</label>
-                  <input type="text" id="institution" name="institution" placeholder="Enter your institution name" required />
+                  <input
+                    type="text"
+                    id="institution"
+                    name="institution"
+                    placeholder="Enter your institution name"
+                    required
+                  />
                 </div>
                 <div className="form-group">
                   <label htmlFor="message">How can we help?</label>
-                  <textarea id="message" name="message" rows="4" placeholder="Tell us about your requirements..." required></textarea>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    placeholder="Tell us about your requirements..."
+                    required
+                  ></textarea>
                 </div>
-                <button type="submit" className="btn-submit" disabled={isSubmitting} style={{ opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? 'not-allowed' : 'pointer' }}>
-                  {isSubmitting ? 'Sending...' : (
-                    <>Send Request <ArrowRight size={18} /></>
+                <button
+                  type="submit"
+                  className="btn-submit"
+                  disabled={isSubmitting}
+                  style={{
+                    opacity: isSubmitting ? 0.7 : 1,
+                    cursor: isSubmitting ? "not-allowed" : "pointer",
+                  }}
+                >
+                  {isSubmitting ? (
+                    "Sending..."
+                  ) : (
+                    <>
+                      Send Request <ArrowRight size={18} />
+                    </>
                   )}
                 </button>
               </form>
@@ -847,14 +1024,16 @@ export default function LandingPage() {
         <div className="container">
           <div className="footer-grid">
             <div className="footer-brand">
-              <h3>
-                <span className="footer-brand-icon"><Code2 size={18} /></span>
-                CodeTracker
-              </h3>
-              <p>
-                A Unified Coding Performance Intelligence Platform for educational
-                institutions. Aggregate, analyze, and act on coding data from every
-                major platform — automatically.
+              <a href="#" className="footer-logo">
+                <img src={logodark} className="logo-icon" alt="Logo" />
+                <p className="nav-logo-text">
+                  Code<span className="footer-logo-white">Tracker</span>
+                </p>
+              </a>
+              <p className="footer-description">
+                A Unified Coding Performance Intelligence Platform for
+                educational institutions. Aggregate, analyze, and act on coding
+                data from every major platform automatically.
               </p>
             </div>
 
@@ -864,7 +1043,6 @@ export default function LandingPage() {
               <a href="#how-it-works">How It Works</a>
               <a href="#roles">User Roles</a>
               <a href="#use-cases">Use Cases</a>
-
             </div>
 
             {/* <div className="footer-column">
@@ -885,17 +1063,22 @@ export default function LandingPage() {
           </div>
 
           <div className="footer-bottom">
-            <p>&copy; {new Date().getFullYear()} CodeTracker. All rights reserved.</p>
+            <p>
+              &copy; {new Date().getFullYear()} CodeTracker. All rights
+              reserved.
+            </p>
             <div className="footer-socials">
-              <a href="#" className="footer-social-link" aria-label="GitHub">
-                <GitFork size={16} />
-              </a>
-              <a href="#" className="footer-social-link" aria-label="Email">
-                <Mail size={16} />
-              </a>
-              <a href="#" className="footer-social-link" aria-label="Website">
-                <Globe size={16} />
-              </a>
+              <p>
+                An{" "}
+                <a
+                  style={{ color: "var(--blue-600)" }}
+                  href="https://ofzen.in"
+                  target="_blank"
+                >
+                  Ofzen Technologies
+                </a>{" "}
+                Product
+              </p>
             </div>
           </div>
         </div>
