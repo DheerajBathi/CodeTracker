@@ -1,8 +1,9 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './index.css';
-import LandingPage from './LandingPage';
-import LegalPrivacy from './LegalPrivacy';
-import TermsOfService from './TermsOfService';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./index.css";
+import LandingPage from "./LandingPage";
+import LegalPrivacy from "./LegalPrivacy";
+import TermsOfService from "./TermsOfService";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/privacy" element={<LegalPrivacy />} />
         <Route path="/terms" element={<TermsOfService />} />
       </Routes>
+      <Analytics />
     </BrowserRouter>
   );
 }
